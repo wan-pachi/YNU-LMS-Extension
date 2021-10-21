@@ -9,7 +9,6 @@ class Homework {
 
 // ヘッダーは最初から表示
 injectHeader();
-injectRefreshButton();
 
 // メイン処理
 (async () => {
@@ -31,23 +30,22 @@ injectRefreshButton();
     }
 })();
 
-function saveToStorage(homeworks) {
-    const unixTime = Date.now() / 1000;
-    const data = {
-        "homeworks": homeworks,
-        "unixTime": unixTime
-    };
+function injectHeader() {
+    // 「未実施の課題」を表示
+    const upperElement = document.querySelector("#cs_loginInfo");
 
-    chrome.storage.local.set(data, function() {});
-}
+    const parent = document.createElement("div");
+    parent.id = "homework_list";
+    upperElement.after(parent);
 
-async function getFromStorage() {
-    return new Promise(resolve => {
-        chrome.storage.local.get((data) => {resolve(data)});
-    });
-}
+    const header = document.createElement("div");
+    header.id = "main";
+    header.style.marginLeft = "3px";
+    header.innerHTML = `<div id="title"> <h2>未実施の課題</h2> </div>`;
 
-function injectRefreshButton() {
+    parent.appendChild(header);
+
+    // 更新ボタンを表示
     const target = document.querySelector("#homework_list > div > div");
 
     const button = document.createElement("button");
@@ -59,33 +57,20 @@ function injectRefreshButton() {
     target.appendChild(button);
 }
 
-async function onButtonClicked() {
-    const isLoading = (document.getElementsByTagName("progress").length != 0);
+async function getFromStorage() {
+    return new Promise(resolve => {
+        chrome.storage.local.get((data) => {resolve(data)});
+    });
+}
 
-    if (isLoading) {
-        return;
-    }
+function saveToStorage(homeworks) {
+    const unixTime = Date.now() / 1000;
+    const data = {
+        "homeworks": homeworks,
+        "unixTime": unixTime
+    };
 
-    const cachedData = await getFromStorage();
-
-    const nowUnixTime = Date.now() / 1000;
-    const previousUnixTime = cachedData.unixTime;
-
-    if (nowUnixTime - previousUnixTime < 15) {
-        window.alert("過度な更新は避けてください（サーバーへの負荷軽減のため）");
-    } 
-    else {
-        removeTable();
-
-        // 履修している講義のIDを取得
-        const uniqueLecIds = await fetchLecIds();
-        // 課題情報を取得
-        const homeworks = await fetchHomeworkList(uniqueLecIds);
-
-        injectTable(homeworks);
-        saveToStorage(homeworks);
-    }
-
+    chrome.storage.local.set(data, function() {});
 }
 
 async function fetchLecIds() {
@@ -205,6 +190,35 @@ async function fetchHomeworkList(uniqueLecIds) {
     return homeworks;
 }
 
+async function onButtonClicked() {
+    const isLoading = (document.getElementsByTagName("progress").length != 0);
+
+    if (isLoading) {
+        return;
+    }
+
+    const cachedData = await getFromStorage();
+
+    const nowUnixTime = Date.now() / 1000;
+    const previousUnixTime = cachedData.unixTime;
+
+    if (nowUnixTime - previousUnixTime < 15) {
+        window.alert("過度な更新は避けてください（サーバーへの負荷軽減のため）");
+    } 
+    else {
+        removeTable();
+
+        // 履修している講義のIDを取得
+        const uniqueLecIds = await fetchLecIds();
+        // 課題情報を取得
+        const homeworks = await fetchHomeworkList(uniqueLecIds);
+
+        injectTable(homeworks);
+        saveToStorage(homeworks);
+    }
+
+}
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -234,21 +248,6 @@ function generateTypeFromId(id) {
     } else {
         return "テスト";
     }
-}
-
-function injectHeader() {
-    const upperElement = document.getElementById("cs_loginInfo");
-
-    const parent = document.createElement("div");
-    parent.id = "homework_list";
-    upperElement.after(parent);
-
-    const header = document.createElement("div");
-    header.id = "main";
-    header.style.marginLeft = "3px";
-    header.innerHTML = `<div id="title"> <h2>未実施の課題</h2> </div>`;
-
-    parent.appendChild(header);
 }
 
 function injectTable(homeworks) {
@@ -294,7 +293,6 @@ function injectTable(homeworks) {
             newTable.appendChild(tr);
         }
     }
-
 
     parent.appendChild(newTable);
 }
