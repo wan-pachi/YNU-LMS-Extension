@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "YNU-LMS Extension",
+    "version": "1.0",
+    "description": "YNU-LMS Extension",
+    "permissions": ["storage", "tabs"],
+    "host_permissions": [
+        "https://lms.ynu.ac.jp/lms/homeHoml/"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://lms.ynu.ac.jp/lms/homeHoml/"
+            ],
+            "js": ["js/main.js"],
+            "css": ["css/style.css"]
+        }
+    ],
+    "background": {
+        "service_worker": "js/background.js"
+    }
+}

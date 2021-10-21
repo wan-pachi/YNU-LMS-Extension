@@ -1,0 +1,43 @@
+#homework_list > table {
+    border: solid 1px #CCCCCC;
+    border-collapse: collapse;
+    margin: 0px 10px 10px 10px;
+    width: calc(100% - 20px); /* 幅 */
+}
+#homework_list > table > tr:nth-child(odd) td {
+    background-color: #f5f5f5
+}
+tr.new_table > th {
+    text-align: start;
+}
+tr.new_table > * {
+    padding: 5px 8px; /* 上下 左右 */
+    border-width: 1px 0px; /* 横方向だけ引く */
+    border-color: #CCCCCC;   /* 線色：緑 */
+    border-style: solid;   /* 線種：実線 */
+    font-size: 13px;
+}
+#homework_list {
+    background-color: white;
+}
+#homework_list > div > div {
+    margin-bottom: 0px !important;
+    display: flex;
+    justify-content: space-between;
+}
+#homework_list > div > div > h2 {
+    line-height: normal !important;
+}
+#refresh_btn {
+    margin: 5px 8px;
+    padding: 0.5px 9px;
+}
+progress {
+    display: block;
+    margin: 13px auto 5px auto;
+    width: 13%;
+}
+.progress_label {
+    text-align: center;
+    margin: 12px 0px;
+}
