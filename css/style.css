@@ -29,8 +29,8 @@ tr.new_table > * {
     line-height: normal !important;
 }
 #refresh_btn {
-    margin: 5px 8px;
-    padding: 0.5px 9px;
+    margin: 2px 7px;
+    padding: 0px 10px;
 }
 progress {
     display: block;
