@@ -2,7 +2,7 @@
     border: solid 1px #CCCCCC;
     border-collapse: collapse;
     margin: 0px 10px 10px 10px;
-    width: calc(100% - 20px); /* 幅 */
+    width: calc(100% - 20px); 
 }
 #homework_list > table > tr:nth-child(odd) td {
     background-color: #f5f5f5
@@ -12,9 +12,9 @@ tr.new_table > th {
 }
 tr.new_table > * {
     padding: 5px 8px; /* 上下 左右 */
-    border-width: 1px 0px; /* 横方向だけ引く */
-    border-color: #CCCCCC;   /* 線色：緑 */
-    border-style: solid;   /* 線種：実線 */
+    border-width: 1px 0px; 
+    border-color: #CCCCCC; 
+    border-style: solid;   
     font-size: 13px;
 }
 #homework_list {
@@ -25,9 +25,6 @@ tr.new_table > * {
     display: flex;
     justify-content: space-between;
 }
-#homework_list > div > div > h2 {
-    line-height: normal !important;
-}
 #refresh_btn {
     margin: 2px 7px;
     padding: 0px 10px;
@@ -35,7 +32,7 @@ tr.new_table > * {
 progress {
     display: block;
     margin: 13px auto 5px auto;
-    width: 13%;
+    width: 182px;
 }
 .progress_label {
     text-align: center;
