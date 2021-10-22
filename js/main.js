@@ -172,7 +172,7 @@ async function fetchHomeworks(uniqueLecIds) {
                     const type = generateTypeFromId(id);
                     const deadline = extractDeadline(submitStatus);
 
-                    // 提出期限が14日後以降なら追加しない
+                    // 提出期限までの日数が15日以上ある場合は追加しない
                     if (!checkDeadlineWithinTwoWeeks(deadline)) break;
 
                     const homework = new Homework(title, lecName, type, deadline);
