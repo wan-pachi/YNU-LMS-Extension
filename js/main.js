@@ -1,12 +1,3 @@
-class Homework {
-    constructor(title, lecName, type, deadline) {
-        this.title = title;
-        this.lecName = lecName;
-        this.type = type;
-        this.deadline = deadline;
-    }
-}
-
 // ヘッダーは最初から表示
 injectHeader();
 
@@ -23,12 +14,21 @@ injectHeader();
         // 履修している講義のIDを取得
         const uniqueLecIds = await fetchLecIds();
         // 課題情報を取得
-        const homeworks = await fetchHomeworkList(uniqueLecIds);
+        const homeworks = await fetchHomeworks(uniqueLecIds);
 
         injectTable(homeworks);
         saveToStorage(homeworks);
     }
 })();
+
+class Homework {
+    constructor(title, lecName, type, deadline) {
+        this.title = title;
+        this.lecName = lecName;
+        this.type = type;
+        this.deadline = deadline;
+    }
+}
 
 function injectHeader() {
     // 「未実施の課題」を表示
@@ -103,7 +103,7 @@ async function fetchLecIds() {
     return uniqueLecIds;
 }
 
-async function fetchHomeworkList(uniqueLecIds) {
+async function fetchHomeworks(uniqueLecIds) {
     const homeworks = [];
     const lecNum = uniqueLecIds.length;
 
@@ -193,9 +193,7 @@ async function fetchHomeworkList(uniqueLecIds) {
 async function onButtonClicked() {
     const isLoading = (document.getElementsByTagName("progress").length != 0);
 
-    if (isLoading) {
-        return;
-    }
+    if (isLoading) return;
 
     const cachedData = await getFromStorage();
 
@@ -211,7 +209,7 @@ async function onButtonClicked() {
         // 履修している講義のIDを取得
         const uniqueLecIds = await fetchLecIds();
         // 課題情報を取得
-        const homeworks = await fetchHomeworkList(uniqueLecIds);
+        const homeworks = await fetchHomeworks(uniqueLecIds);
 
         injectTable(homeworks);
         saveToStorage(homeworks);
