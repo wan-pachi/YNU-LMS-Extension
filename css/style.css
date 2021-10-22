@@ -11,7 +11,7 @@ tr.new_table > th {
     text-align: start;
 }
 tr.new_table > * {
-    padding: 5px 8px; /* 上下 左右 */
+    padding: 5px 8px; 
     border-width: 1px 0px; 
     border-color: #CCCCCC; 
     border-style: solid;   
