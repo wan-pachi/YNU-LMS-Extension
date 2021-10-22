@@ -1,4 +1,4 @@
-# YNU-LMS-Extension
+# YNU-LMS-Extension v1.0.1
 
 未実施の課題・テスト情報を取得して、LMSに一覧表示するChrome拡張です。
 
