@@ -172,6 +172,9 @@ async function fetchHomeworks(uniqueLecIds) {
                     const type = generateTypeFromId(id);
                     const deadline = extractDeadline(submitStatus);
 
+                    // 提出期限が14日後以降なら追加しない
+                    if (!checkDeadlineWithinTwoWeeks(deadline)) break;
+
                     const homework = new Homework(title, lecName, type, deadline);
 
                     homeworks.push(homework);
@@ -235,6 +238,19 @@ function extractLecName(originalLecName) {
 
 function extractDeadline(submitStatus) {
     return submitStatus.slice(submitStatus.indexOf(":") + 1);
+}
+
+function checkDeadlineWithinTwoWeeks(deadline) {
+    const deadlineDate = new Date(deadline);
+    const todayDate = new Date().setHours(0, 0, 0, 0);
+
+    const dateDiff = (deadlineDate - todayDate) / 86400000;
+
+    if (dateDiff <= 14) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function generateTypeFromId(id) {
