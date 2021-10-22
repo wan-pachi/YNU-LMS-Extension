@@ -98,7 +98,7 @@ async function fetchLecIds() {
         }
     }
 
-    // 講義名・講義ID を格納する新たな配列（重複を排除）
+    // 講義ID を格納する新たな配列（重複を排除）
     const uniqueLecIds = [...new Set(duplicatedLecIds)];
     return uniqueLecIds;
 }
@@ -123,7 +123,6 @@ async function fetchHomeworks(uniqueLecIds) {
         progressLabel.innerText = generateProgressLabel(i+1, lecNum);
 
         const lecId = uniqueLecIds[i];
-
         const url = "https://lms.ynu.ac.jp/lms/homeHoml/linkKougi?kougiId=" + lecId;
 
         const response = await fetch(url);
