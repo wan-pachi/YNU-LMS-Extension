@@ -1,11 +1,13 @@
 # YNU-LMS-Extension
 
-未実施の課題・テスト情報を取得して、LMSに一覧表示するChrome拡張です。
+未実施の課題・テスト情報を取得して、LMSに一覧表示するChrome拡張です。  
+表示されるのは`提出期限までの日数が14日以内`のものに限られます。
 
 ![見本](imgs/home.jpg)
 
 ## 導入方法（Mac / Win 共通）
 1. 右上にある緑色の`Code`ボタンを押したあと、`Download ZIP`をクリック
+
 
 ![Step-1](imgs/step-1.png)
 
