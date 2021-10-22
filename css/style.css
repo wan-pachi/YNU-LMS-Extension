@@ -4,12 +4,15 @@
     margin: 0px 10px 10px 10px;
     width: calc(100% - 20px); 
 }
+ 
 #homework_list > table > tr:nth-child(odd) td {
     background-color: #f5f5f5
 }
+
 tr.new_table > th {
     text-align: start;
 }
+
 tr.new_table > * {
     padding: 5px 8px; 
     border-width: 1px 0px; 
@@ -17,23 +20,28 @@ tr.new_table > * {
     border-style: solid;   
     font-size: 13px;
 }
+
 #homework_list {
     background-color: white;
 }
+
 #homework_list > div > div {
     margin-bottom: 0px !important;
     display: flex;
     justify-content: space-between;
 }
+
 #refresh_btn {
     margin: 2px 7px;
     padding: 0px 10px;
 }
+
 progress {
     display: block;
     margin: 13px auto 5px auto;
     width: 182px;
 }
+
 .progress_label {
     text-align: center;
     margin: 12px 0px;
