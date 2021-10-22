@@ -2,7 +2,7 @@
 
 未実施の課題・テスト情報を取得して、LMSに一覧表示するChrome拡張です。
 
-![見本](imgs/home.png)
+![見本](imgs/home.jpg)
 
 ## 導入方法（Mac / Win 共通）
 1. 右上にある緑色の`Code`ボタンを押したあと、`Download ZIP`をクリック
