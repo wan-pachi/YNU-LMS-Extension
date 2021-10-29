@@ -125,7 +125,7 @@ async function fetchHomeworks(uniqueLecIds) {
         const lecId = uniqueLecIds[i];
         const url = "https://lms.ynu.ac.jp/lms/homeHoml/linkKougi?kougiId=" + lecId;
 
-        const response = await fetch(url);
+        const response = await fetch(url, { headers: { 'YNU-LMS-Extension': '1.0.1' }});
         const htmlString = await response.text();
 
         const parser = new DOMParser();
